@@ -11,9 +11,10 @@ using ::testing::_;
 class TestIdleState : public ::testing::Test
 {
 protected:
-    TestIdleState()
-        : microwave(light, motor, system, ui)
+    TestIdleState() 
     {
+        EXPECT_CALL(motor, SetPower(0));
+        microwave = new Microwave(light, motor, system, ui);
     }
 
     virtual ~TestIdleState() {}
@@ -22,12 +23,12 @@ protected:
     MMotor motor;
     MSystem system;
     MUserInterface ui;
-    Microwave microwave;
+    Microwave* microwave;
 };
 
-TEST_F(TestIdleState, test_start_event)
-{
-    // EXPECT_CALL(ui, GetRequestedPower()).WillOnce(Return(800));
-    // EXPECT_CALL(motor, SetPower(800));
-    EXPECT_EQ(STATE_HEATING, microwave.HandleIdleState(EV_START));
-}
+// TEST_F(TestIdleState, test_start_event)
+// {
+//     EXPECT_CALL(ui, GetRequestedPower()).WillOnce(Return(800));
+//     EXPECT_CALL(motor, SetPower(800));
+//     EXPECT_EQ(STATE_HEATING, microwave->HandleIdleState(EV_START));
+// }

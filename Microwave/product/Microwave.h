@@ -15,6 +15,7 @@ public:
 
     void HandleEvent(Events ev);
     States HandleIdleState(Events ev);
+    States HandleHeatingPausedState(Events ev);
 
 private:
     States currentState;

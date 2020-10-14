@@ -4,7 +4,9 @@
 enum States
 {
     STATE_IDLE,
-    STATE_HEATING
+    STATE_HEATING,
+    STATE_AWAITING_DOOR_CLOSED,
+    STATE_HEATING_PAUSED
 };
 
 #endif
