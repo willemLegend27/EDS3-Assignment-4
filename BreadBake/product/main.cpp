@@ -11,6 +11,7 @@
 #include "Tasks.h"
 #include "Timer.h"
 #include "YeastTray.h"
+#include <thread>
 
 #include <iostream>
 
@@ -20,22 +21,25 @@ int main()
     Oven oven(log);
     Timer ovenTimer(oven, log);
     oven.AddTimer(ovenTimer);
-    // KneadMotor motor(log);
-    // YeastTray yeast(log);
-    // ExtraIngredientsTray extras(log);
-    // Display display(log);
-    // StartButtonLed startButton(log);
+    //KneadMotor motor(log);
+    //YeastTray yeast(log);
+    //ExtraIngredientsTray extras(log);
+    //Display display(log);
+    //StartButtonLed startButton(log);
     EventGenerator eventGenerator(oven, log);
-    // Timer mainTimer(eventGenerator, log);
-    // BreadBaker baker(eventGenerator);
+    //Timer mainTimer(eventGenerator, log);
+    BreadBaker baker(eventGenerator);
 
     volatile bool quit = false;
-    // TODO: start BreadBaker::Run in a separate thread
 
+    std::thread bakeThread(&BreadBaker::Run,&baker,&quit);
+    
+    
+    // TODO: start BreadBaker::Run in a separate thread  
     // interfaces for simulation
     IUserActions& userAction = eventGenerator;
     IOvenSimulator& ovenSim = oven;
-
+    
     char choice = '\0';
     while (!quit)
     {

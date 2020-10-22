@@ -3,7 +3,9 @@
 
 enum States
 {
-    Standby
+    Standby,
+    Setup,
+    Producing
 };
 
 #endif
