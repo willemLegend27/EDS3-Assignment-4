@@ -15,6 +15,9 @@
 
 class BreadBaker
 {
+
+private:
+    
 public:
     BreadBaker(IEventGenerator& eventGenerator);
 
@@ -32,6 +35,7 @@ public:
 
 private:
     IEventGenerator& eventGenerator;
+    States state;
 };
 
 
