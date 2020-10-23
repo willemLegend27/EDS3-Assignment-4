@@ -21,7 +21,6 @@ int main()
     Oven oven(log);
     Timer ovenTimer(oven, log);
     oven.AddTimer(ovenTimer);
-<<<<<<< HEAD
     KneadMotor motor(log);
     YeastTray yeast(log);
     ExtraIngredientsTray extras(log);
@@ -34,23 +33,6 @@ int main()
     volatile bool quit = false; 
     // TODO: start BreadBaker::Run in a separate thread  
     std::thread bakeThread(&BreadBaker::Run,&baker,&quit);
-=======
-    //KneadMotor motor(log);
-    //YeastTray yeast(log);
-    //ExtraIngredientsTray extras(log);
-    //Display display(log);
-    //StartButtonLed startButton(log);
-    EventGenerator eventGenerator(oven, log);
-    //Timer mainTimer(eventGenerator, log);
-    BreadBaker baker(eventGenerator);
-
-    volatile bool quit = false;
-
-    std::thread bakeThread(&BreadBaker::Run,&baker,&quit);
-    
-    
-    // TODO: start BreadBaker::Run in a separate thread  
->>>>>>> main
     // interfaces for simulation
     IUserActions& userAction = eventGenerator;
     IOvenSimulator& ovenSim = oven;
