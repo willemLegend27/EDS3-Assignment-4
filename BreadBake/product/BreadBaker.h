@@ -35,6 +35,7 @@ public:
 
 private:
     IEventGenerator& eventGenerator;
+<<<<<<< HEAD
     ITimer& timer;
     IOven& oven;
     IStartButtonLed& startButton;
@@ -45,6 +46,9 @@ private:
 
     States currentState;
     bool enterState=true;
+=======
+    States state;
+>>>>>>> main
 };
 
 
