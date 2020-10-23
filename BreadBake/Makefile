@@ -16,6 +16,7 @@ TEST_HEADERS=$(HEADERS) \
 			 
 TEST_LIBS=-lgtest -lgmock -lgmock_main $(LIBS)
 
+
 CC=g++
 
 .phony: all clean test

@@ -15,8 +15,11 @@
 
 class BreadBaker
 {
+
+private:
+    
 public:
-    BreadBaker(IEventGenerator& eventGenerator);
+    BreadBaker(IEventGenerator& eventGenerator, ITimer& timer, IOven& oven, IStartButtonLed& startButton, IDisplay& display, IExtraIngredientsTray& extras, IYeastTray& yeast, IKneadMotor& kneadMotor);
 
     BreadBaker(const BreadBaker& other) = delete;
     BreadBaker& operator=(const BreadBaker&) = delete;
@@ -32,6 +35,16 @@ public:
 
 private:
     IEventGenerator& eventGenerator;
+    ITimer& timer;
+    IOven& oven;
+    IStartButtonLed& startButton;
+    IDisplay& display;
+    IExtraIngredientsTray& extras;
+    IYeastTray& yeast;
+    IKneadMotor& kneadMotor;
+
+    States currentState;
+    bool enterState=true;
 };
 
 
