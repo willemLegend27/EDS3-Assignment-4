@@ -18,12 +18,14 @@ public:
     // ITimer
     void Set(uint64_t time);
     void Cancel();
+    
 
 private:
     ITimerTimeout& timerTimeout;
     Log& log;
 
     uint64_t GetSimulatedTime(uint64_t time);
+    void CountDownTimer(uint64_t time);
 };
 
 #endif

@@ -29,13 +29,16 @@ int main()
     EventGenerator eventGenerator(oven, log);
     Timer mainTimer(eventGenerator, log);
     BreadBaker baker(eventGenerator, ovenTimer, oven, startButton, display, extras, yeast, motor);
-
+    //uint64_t time=100;
     volatile bool quit = false; 
     // TODO: start BreadBaker::Run in a separate thread  
     std::thread bakeThread(&BreadBaker::Run,&baker,&quit);
     // interfaces for simulation
     IUserActions& userAction = eventGenerator;
     IOvenSimulator& ovenSim = oven;
+   
+    mainTimer.Set(100);
+    
     
     char choice = '\0';
     while (!quit)
