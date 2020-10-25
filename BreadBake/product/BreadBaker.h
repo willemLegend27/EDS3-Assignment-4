@@ -45,8 +45,6 @@ private:
 
     States currentState;
     bool enterState=true;
-
-  
 };
 
 

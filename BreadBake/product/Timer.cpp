@@ -1,5 +1,7 @@
 #include "Timer.h"
 
+#include <thread>
+
 // To prevent endless waiting during testing, your timer can make use of the
 // GetSimulatedTime method, which will divide waiting time by factor
 // TimeDivider and will limit the maximum waiting time to MaxTimeInMiliseconds.
@@ -20,6 +22,11 @@ void Timer::Set(uint64_t time)
     uint64_t nrTicks = GetSimulatedTime(time);
     log.Debug("timer set to: %lu ms (%lu min  ==> simulated time: %lu ms)", time, time MS,
               nrTicks);
+    
+    
+    std::thread ovenTimerThread(&Timer::CountDownTimer,this,time);
+    ovenTimerThread.detach();
+
 }
 
 void Timer::Cancel()
@@ -36,4 +43,16 @@ uint64_t Timer::GetSimulatedTime(uint64_t time)
         simulatedTime = MaxTimeInMiliseconds;
     }
     return simulatedTime;
+}
+
+void Timer::CountDownTimer(uint64_t time)
+{
+    int i=time;
+    while(i>=0)
+    {
+        log.Debug("Time left on timer: %lu ms",i);
+        i-=1;
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    }
+    timerTimeout.TimerTimeout();
 }
