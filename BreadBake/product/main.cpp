@@ -37,9 +37,6 @@ int main()
     IUserActions& userAction = eventGenerator;
     IOvenSimulator& ovenSim = oven;
    
-    mainTimer.Set(100);
-    
-    
     char choice = '\0';
     while (!quit)
     {
