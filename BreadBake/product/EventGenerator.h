@@ -9,13 +9,13 @@
 #include "Log.h"
 #include <vector>
 
-class EventGenerator: public IEventGenerator, public ITimerTimeout, public IUserActions
+class EventGenerator : public IEventGenerator, public ITimerTimeout, public IUserActions
 {
 public:
-    EventGenerator(IOven& oven, Log& log);
+    EventGenerator(IOven &oven, Log &log);
 
-    EventGenerator(const EventGenerator& other) = delete;
-    EventGenerator& operator=(const EventGenerator&) = delete;
+    EventGenerator(const EventGenerator &other) = delete;
+    EventGenerator &operator=(const EventGenerator &) = delete;
 
     // IEventGenerator
     Events GetEvent();
@@ -33,10 +33,10 @@ public:
     void StartPressed();
 
 private:
-    IOven& oven;
+    IOven &oven;
     std::vector<Events> events;
     bool prevOvenOn;
-    Log& log;
+    Log &log;
 
     void HandlePollEvents();
     void PushEvent(Events event);

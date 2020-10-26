@@ -1,6 +1,6 @@
 #include "StartButtonLed.h"
 
-StartButtonLed::StartButtonLed(Log& log)
+StartButtonLed::StartButtonLed(Log &log)
     : log(log)
 {
 }

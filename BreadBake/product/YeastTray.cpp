@@ -1,6 +1,6 @@
 #include "YeastTray.h"
 
-YeastTray::YeastTray(Log& log)
+YeastTray::YeastTray(Log &log)
     : log(log)
 {
 }

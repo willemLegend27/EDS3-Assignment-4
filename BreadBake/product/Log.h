@@ -7,14 +7,14 @@ class Log
 {
 public:
     Log() = default;
-    Log(Log const&) = delete;
-    void operator=(Log const&) = delete;
+    Log(Log const &) = delete;
+    void operator=(Log const &) = delete;
 
-    virtual void Debug(const char* fmt, ...);
-    virtual void Trace(const char* fmt, ...);
+    virtual void Debug(const char *fmt, ...);
+    virtual void Trace(const char *fmt, ...);
 
 private:
-    void Write(bool enabled, const char* fmt, va_list ap);
+    void Write(bool enabled, const char *fmt, va_list ap);
 };
 
 #endif

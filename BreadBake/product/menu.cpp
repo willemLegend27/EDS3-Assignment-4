@@ -26,22 +26,21 @@ static bool GetCharAvailable(long timeoutInSec)
 
 void ShowMenu(void)
 {
-    const char* strings[] =
-    {
-        "\n\nMenu\n",
-        "====\n",
-        "(1) Menu button\n",
-        "(2) Menu button long press\n",
-        "(3) Timer up button\n",
-        "(4) Timer down button\n",
-        "(5) Start button\n",
-        "(6) Set oven temperature\n",
-        "-----------------------\n",
-        "(q) QUIT\n",
-        "Enter: repeat previous choice\n\n",
-        "Choice : "
-    };
-    const size_t NrMenuStrings = sizeof(strings)/sizeof(strings[0]);
+    const char *strings[] =
+        {
+            "\n\nMenu\n",
+            "====\n",
+            "(1) Menu button\n",
+            "(2) Menu button long press\n",
+            "(3) Timer up button\n",
+            "(4) Timer down button\n",
+            "(5) Start button\n",
+            "(6) Set oven temperature\n",
+            "-----------------------\n",
+            "(q) QUIT\n",
+            "Enter: repeat previous choice\n\n",
+            "Choice : "};
+    const size_t NrMenuStrings = sizeof(strings) / sizeof(strings[0]);
     for (size_t i = 0; i < NrMenuStrings; i++)
     {
         std::cout << strings[i];

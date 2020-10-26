@@ -7,15 +7,15 @@
 #include "ITimerTimeout.h"
 #include "Log.h"
 
-class Oven: public IOven, public ITimerTimeout, public IOvenSimulator
+class Oven : public IOven, public ITimerTimeout, public IOvenSimulator
 {
 public:
-    Oven(Log& log);
+    Oven(Log &log);
 
-    Oven(const Oven&) = delete;
-    Oven& operator=(const Oven&) = delete;
+    Oven(const Oven &) = delete;
+    Oven &operator=(const Oven &) = delete;
 
-    void AddTimer(ITimer& timer);
+    void AddTimer(ITimer &timer);
 
     // IOven
     void StartRise(int timeInMinutes);
@@ -31,8 +31,8 @@ public:
     void SetTemperature(int temp);
 
 private:
-    ITimer* timer;
-    Log& log;
+    ITimer *timer;
+    Log &log;
     bool isOn;
     int currTemp;
 

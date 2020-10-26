@@ -4,15 +4,12 @@
 
 #define MIN *60000
 
-Oven::Oven(Log& log)
-    : timer(nullptr)
-    , log(log)
-    , isOn(false)
-    , currTemp(0)
+Oven::Oven(Log &log)
+    : timer(nullptr), log(log), isOn(false), currTemp(0)
 {
 }
 
-void Oven::AddTimer(ITimer& timer)
+void Oven::AddTimer(ITimer &timer)
 {
     if (this->timer != nullptr)
     {
@@ -61,7 +58,6 @@ void Oven::TimerTimeout()
     log.Trace(">> Oven::%s", __FUNCTION__);
     isOn = false;
 }
-
 
 // for simulation
 void Oven::SetTemperature(int temp)
