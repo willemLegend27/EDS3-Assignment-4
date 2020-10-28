@@ -22,6 +22,7 @@ void BreadBaker::Run(volatile bool *quit)
 // parameter name in comment to prevent compiler warning as it is unused for now
 void BreadBaker::HandleEvent(Events ev)
 {
+
     switch (currentState)
     {
     case Standby:
@@ -35,21 +36,54 @@ void BreadBaker::HandleEvent(Events ev)
         {
             currentState = Setup;
             enterState = true;
+            totalTimeInMs = 60000 * 5;
+            timer.Set(totalTimeInMs);
         }
         break;
     case Setup:
         if (enterState == true)
         {
-            //entry
+            display.SetMenu(1);
             enterState = false;
         }
-        if (ev == MenuBtnLongPressed)
+        if (ev == MenuBtnPressed)
         {
-            currentState = Standby;
+            //program++
+        }
+        else if (ev == TimerUpBtnPressed)
+        {
+            if (totalTimeInMs < (60000 * 60 * 12))
+            {
+                totalTimeInMs = 60000 * 10;
+                timer.Set(/*programTime + */ totalTimeInMs);
+            }
+        }
+        else if (ev == TimerDownBtnPressed)
+        {
+            if (/*programTime >*/ totalTimeInMs)
+            {
+                totalTimeInMs = 60000 * 10;
+                timer.Set(/*programTime - */ totalTimeInMs);
+            }
         }
         else if (ev == StartBtnPressed)
         {
-            currentState = Producing;
+            if (oven.GetTemperature() <= 50)
+            {
+                startButton.LedOn();
+                currentState = Producing;
+                enterState = true;
+            }
+            else
+            {
+                currentState = Blinking_Start;
+                enterState = true;
+            }
+        }
+        else if (ev == TimerTimeout)
+        {
+            currentState = Standby;
+            enterState = true;
         }
         break;
     case Producing:
@@ -63,6 +97,19 @@ void BreadBaker::HandleEvent(Events ev)
             currentState = Standby;
         }
         break;
+    case Blinking_Start:
+        if (enterState == true)
+        {
+            startButton.LedOff();
+            totalTimeInMs = 500;
+            timer.Set(totalTimeInMs);
+            enterState = false;
+        }
+        if (ev == TimerTimeout)
+        {
+            /*guard count>=10*/
+            currentState = Setup;
+        }
     default:
 
         break;

@@ -5,7 +5,8 @@ enum States
 {
     Standby,
     Setup,
-    Producing
+    Producing,
+    Blinking_Start
 };
 
 #endif
