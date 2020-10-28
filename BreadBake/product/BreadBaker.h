@@ -12,10 +12,12 @@
 #include "IYeastTray.h"
 #include "Log.h"
 #include "States.h"
+#include "Program.h"
+#include "Producing_Substates.h"
+#include "Kneading_Substates.h"
 
 class BreadBaker
 {
-
 private:
     IEventGenerator &eventGenerator;
     ITimer &timer;
@@ -27,10 +29,14 @@ private:
     IKneadMotor &kneadMotor;
 
     States currentState;
+    Producing_Substates producingState;
+    Kneading_Substates kneadingState;
+    Kneading_Substates prevKneadingState;
     bool enterState = true;
+    bool enterProducingSubState = true;
+    bool enterKneadingSubState = true;
     int totalTimeInMs = 0;
-    Tasks task = NoIndicator;
-
+    Program program;
 public:
     BreadBaker(IEventGenerator &eventGenerator, ITimer &timer, IOven &oven, IStartButtonLed &startButton, IDisplay &display, IExtraIngredientsTray &extras, IYeastTray &yeast, IKneadMotor &kneadMotor);
 
@@ -47,6 +53,9 @@ private:
     // You cannot have both at the same time (without dirty tricks)
     ///[I chose to have this method private]
     void HandleEvent(Events ev);
+    void HandleState(States state);
+    void HandleProducingSubState(Producing_Substates producingState);
+    void HandleKneadingSubState(Kneading_Substates kneadingState);
 };
 
 #endif

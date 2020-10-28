@@ -1,6 +1,7 @@
 #include "Timer.h"
 
 #include <thread>
+#include <mutex>
 
 // To prevent endless waiting during testing, your timer can make use of the
 // GetSimulatedTime method, which will divide waiting time by factor
@@ -9,6 +10,7 @@
 // to std::numeric_limits<uint64_t>::max() (or another really big number).
 const uint64_t TimeDivider = 100;
 const uint64_t MaxTimeInMiliseconds = 4000;
+std::mutex m;
 #define MS / 60000
 
 Timer::Timer(ITimerTimeout &timerTimeout, Log &log)
@@ -22,6 +24,7 @@ void Timer::Set(uint64_t time)
     log.Debug("timer set to: %lu ms (%lu min  ==> simulated time: %lu ms)", time, time MS,
               nrTicks);
 
+    m.try_lock();
     timerThread = std::thread(&Timer::CountDownTimer, this, time);
 }
 
@@ -29,6 +32,7 @@ void Timer::Cancel()
 {
     log.Trace(">> %s", __FUNCTION__);
     stopTimerThread = true;
+    m.unlock();
 }
 
 uint64_t Timer::GetSimulatedTime(uint64_t time)

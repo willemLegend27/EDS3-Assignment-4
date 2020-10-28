@@ -3,10 +3,10 @@
 
 enum States
 {
-    Standby,
-    Setup,
-    Producing,
-    Blinking_Start
+    STANDBY,
+    SETUP,
+    PRODUCING,
+    BLINKING_START
 };
 
 #endif
