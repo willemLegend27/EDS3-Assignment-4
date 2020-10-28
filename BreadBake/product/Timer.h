@@ -9,6 +9,10 @@
 
 class Timer : public ITimer
 {
+private:
+    std::thread timerThread;
+    bool stopTimerThread = false;
+
 public:
     Timer(ITimerTimeout &timerTimeout, Log &log);
 

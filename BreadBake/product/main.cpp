@@ -37,6 +37,9 @@ int main()
     IUserActions &userAction = eventGenerator;
     IOvenSimulator &ovenSim = oven;
 
+    ovenTimer.Set(10000);
+    mainTimer.Set(5000);
+
     char choice = '\0';
     while (!quit)
     {
@@ -50,9 +53,11 @@ int main()
             break;
         case '1':
             userAction.MenuPressed();
+            ovenTimer.Cancel();
             break;
         case '2':
             userAction.MenuLongPressed();
+            mainTimer.Cancel();
             break;
         case '3':
             userAction.TimerUpPressed();

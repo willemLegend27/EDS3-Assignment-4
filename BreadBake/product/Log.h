@@ -2,9 +2,11 @@
 #define LOG_H
 
 #include <stdarg.h>
+#include <cstddef>
 
 class Log
 {
+
 public:
     Log() = default;
     Log(Log const &) = delete;

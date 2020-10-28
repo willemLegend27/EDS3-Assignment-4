@@ -1,12 +1,12 @@
 #include "Log.h"
 
 #include <cstdio>
+#include <thread>
 
 const bool DebugEnabled = true;
 const bool TraceEnabled = true;
 
-
-void Log::Debug(const char* fmt, ...)
+void Log::Debug(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
@@ -14,7 +14,7 @@ void Log::Debug(const char* fmt, ...)
     va_end(args);
 }
 
-void Log::Trace(const char* fmt, ...)
+void Log::Trace(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
@@ -22,13 +22,13 @@ void Log::Trace(const char* fmt, ...)
     va_end(args);
 }
 
-void Log::Write(bool enabled, const char* fmt, va_list ap)
+void Log::Write(bool enabled, const char *fmt, va_list ap)
 {
+
     if (enabled)
     {
         const size_t MaxLength = 1000;
         char message[MaxLength];
-
         vsnprintf(message, MaxLength, fmt, ap);
         printf("%s\n", message);
     }
