@@ -12,11 +12,12 @@
 #include "Timer.h"
 #include "YeastTray.h"
 #include <thread>
-
+#include <mutex>
 #include <iostream>
 
 int main()
 {
+    std::mutex m;
     Log log;
     Oven oven(log);
     Timer ovenTimer(oven, log);
@@ -32,7 +33,9 @@ int main()
     //uint64_t time=100;
     volatile bool quit = false;
     // TODO: start BreadBaker::Run in a separate thread
+    m.try_lock();
     std::thread bakeThread(&BreadBaker::Run, &baker, &quit);
+    m.unlock();
     // interfaces for simulation
     IUserActions &userAction = eventGenerator;
     IOvenSimulator &ovenSim = oven;

@@ -26,13 +26,13 @@ void Timer::Set(uint64_t time)
 
     m.try_lock();
     timerThread = std::thread(&Timer::CountDownTimer, this, time);
+    m.unlock();
 }
 
 void Timer::Cancel()
 {
     log.Trace(">> %s", __FUNCTION__);
     stopTimerThread = true;
-    m.unlock();
 }
 
 uint64_t Timer::GetSimulatedTime(uint64_t time)

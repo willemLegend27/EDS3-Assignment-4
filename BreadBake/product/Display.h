@@ -14,7 +14,7 @@ public:
     Display& operator=(const Display&) = delete;
 
     void SetCurrentTask(Tasks task);
-    void SetMenu(int number);
+    void SetMenuNumber(int number);
     void SetTime(int hour, int min);
     void DisplayOff();
 

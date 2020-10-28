@@ -41,7 +41,7 @@ void BreadBaker::HandleState(States state)
     case SETUP:
         if (enterState == true)
         {
-            display.SetMenu(1);
+            display.SetMenuNumber(1);
             enterState = false;
         }
         break;

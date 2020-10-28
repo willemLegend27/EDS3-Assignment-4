@@ -1,11 +1,11 @@
 #include "Display.h"
 
-static const char* TaskText[] = { "No task", "Waiting", "Kneading",
-                                  "Rising",  "Baking",  "Done" };
-static const char* MenuText[] = { "Bread", "Bread +", "Bread Quick", "Dough",
-                                  "Bake Only" };
+static const char *TaskText[] = {"No task", "Waiting", "Kneading",
+                                 "Rising", "Baking", "Done"};
+static const char *MenuText[] = {"Bread", "Bread +", "Bread Quick", "Dough",
+                                 "Bake Only"};
 
-Display::Display(Log& log)
+Display::Display(Log &log)
     : log(log)
 {
 }
@@ -15,7 +15,7 @@ void Display::SetCurrentTask(Tasks task)
     log.Debug(">> %s: %s", __FUNCTION__, TaskText[task]);
 }
 
-void Display::SetMenu(int number)
+void Display::SetMenuNumber(int number)
 {
     log.Debug(">> %s: %s", __FUNCTION__, MenuText[number]);
 }

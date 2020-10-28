@@ -6,10 +6,10 @@
 class IDisplay
 {
 public:
-    virtual ~IDisplay() {};
+    virtual ~IDisplay(){};
 
     virtual void SetCurrentTask(Tasks task) = 0;
-    virtual void SetMenu(int number) = 0;
+    virtual void SetMenuNumber(int number) = 0;
     virtual void SetTime(int hour, int min) = 0;
     virtual void DisplayOff() = 0;
 };
